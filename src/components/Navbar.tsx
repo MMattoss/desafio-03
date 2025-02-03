@@ -5,9 +5,9 @@ import cartIcon from '../assets/cart-icon.svg'
 const Navbar = () => {
   return (
     <header className='flex justify-between items-center py-[30px] pl-14 pr-24'>
-      <div className='flex items-baseline'>
-        <img src={logo} alt="Logo" className="w-[50px] h-8"/>
-        <h1 className='font-montserrat font-bold text-[34px]'>Furniro</h1>
+      <div className='flex items-center'>
+        <img src={logo} alt="Logo" className="mr-1"/>
+        <h1 className='font-montserrat font-bold text-[34px] leading-none'>Furniro</h1>
       </div>
 
       <nav>
