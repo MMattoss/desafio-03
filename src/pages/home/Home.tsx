@@ -1,12 +1,7 @@
-import heroBg from '../assets/hero-bg.png'
-import categoryDining from '../assets/category-dining.png'
-import categoryLivingRoom from '../assets/category-living-room.png'
-import categoryBathroom from '../assets/category-bathroom.png'
-
 const Home = () => {
   return (
     <>
-      <section id="hero" style={{ backgroundImage: `url(${heroBg})` }} className='bg-no-repeat bg-cover bg-center h-[712px] flex items-center justify-end pr-[18px]'>
+      <section id="hero" style={{ backgroundImage: `url(https://furniro-images.s3.us-east-2.amazonaws.com/homeImages/hero-bg.png)` }} className='bg-no-repeat bg-cover bg-center h-[712px] flex items-center justify-end pr-[18px]'>
         <div className='w-[643px] h-[443px] bg-color-primary-light pt-16 pl-10 pr-11 pb-9 rounded-lg'>
           <h3 className='text-base font-semibold text-dark-grey tracking-widest '>New Arrival</h3>
           <h1 className='text-[52px] text-color-primary font-bold leading-tight mb-6'>Discover Our <br /> New Collection</h1>
@@ -23,19 +18,23 @@ const Home = () => {
 
         <div className='flex gap-5'>
           <div>
-            <img src={categoryDining} alt="Dining table" className='mb-[30px] rounded'/>
+            <img src="https://furniro-images.s3.us-east-2.amazonaws.com/homeImages/category-dining.png" alt="Dining table" className='mb-[30px] rounded'/>
             <h3 className='text-dark-grey text-2xl font-semibold text-center'>Dining</h3>
           </div>
           <div>
-            <img src={categoryLivingRoom} alt="Living room" className='mb-[30px] rounded' />
+            <img src="https://furniro-images.s3.us-east-2.amazonaws.com/homeImages/category-living-room.png" alt="Living room" className='mb-[30px] rounded' />
             <h3 className='text-dark-grey text-2xl font-semibold text-center'>Living</h3>
           </div>
           <div>
-            <img src={categoryBathroom} alt="Bathroom" className='mb-[30px] rounded' />
+            <img src="https://furniro-images.s3.us-east-2.amazonaws.com/homeImages/category-bathroom.png" alt="Bathroom" className='mb-[30px] rounded' />
             <h3 className='text-dark-grey text-2xl font-semibold text-center'>Bedroom</h3>
           </div>
 
         </div>
+      </section>
+
+      <section id='products' className='mt-14'>
+        <h3 className='text-[40px] text-dark-grey font-bold text-center'>Our Products</h3>
       </section>
     </>
   )

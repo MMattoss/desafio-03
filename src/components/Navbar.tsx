@@ -1,4 +1,3 @@
-import logo from '../assets/logo.png'
 import loginIcon from '../assets/login-icon.svg'
 import cartIcon from '../assets/cart-icon.svg'
 import { NavLink } from 'react-router'
@@ -7,7 +6,7 @@ const Navbar = () => {
   return (
     <header className='flex justify-between items-center py-[30px] pl-14 pr-24'>
       <div className='flex items-center'>
-        <img src={logo} alt="Logo" className="mr-1"/>
+        <img src="https://furniro-images.s3.us-east-2.amazonaws.com/homeImages/logo.png" alt="Logo" className="mr-1"/>
         <h1 className='font-montserrat font-bold text-[34px] leading-none'>Furniro</h1>
       </div>
 
