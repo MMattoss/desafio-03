@@ -1,6 +1,7 @@
 import logo from '../assets/logo.png'
 import loginIcon from '../assets/login-icon.svg'
 import cartIcon from '../assets/cart-icon.svg'
+import { NavLink } from 'react-router'
 
 const Navbar = () => {
   return (
@@ -12,10 +13,10 @@ const Navbar = () => {
 
       <nav>
         <ul className='flex gap-[75px]'>
-          <li><a href="#" className='text-base font-medium font-poppins'>Home</a></li>
-          <li><a href="#" className='text-base font-medium font-poppins'>Shop</a></li>
-          <li><a href="#" className='text-base font-medium font-poppins'>About</a></li>
-          <li><a href="#" className='text-base font-medium font-poppins'>Contact</a></li>
+          <li><NavLink to="/" className='text-base font-medium font-poppins'>Home</NavLink></li>
+          <li><NavLink to="/shop" className='text-base font-medium font-poppins'>Shop</NavLink></li>
+          <li><NavLink to="#" className='text-base font-medium font-poppins'>About</NavLink></li>
+          <li><NavLink to="/contact" className='text-base font-medium font-poppins'>Contact</NavLink></li>
         </ul>
       </nav>
 
