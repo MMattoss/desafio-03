@@ -11,7 +11,10 @@ export default {
         'color-primary': '#B88E2F',
         'color-primary-light': '#FFF3E3',
         'dark-grey': '#333333',
-        'semi-dark-grey': '#666666'
+        'dark-grey-2': '#3A3A3A',
+        'semi-dark-grey': '#666666',
+        'semi-dark-grey-2': '#898989',
+        'light-grey': '#B0B0B0'
       },
     },
   },
