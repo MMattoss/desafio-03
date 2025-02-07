@@ -1,7 +1,4 @@
-import { Suspense } from "react";
-import LoadingProduct from "./components/LoadingProduct";
 import ProductsGrid from "./components/ProductsGrid";
-import { productsResource } from "../../utils/fetchProducts";
 
 const Home = () => {
 
