@@ -29,7 +29,7 @@ const ProductsGrid = () => {
           setIsLoading(true);
           try {
             const data = await fetchProducts();
-            console.log(data)
+
             if (!data.error) {
               setProductsList(data.res);
               setProductError(false);
@@ -38,6 +38,7 @@ const ProductsGrid = () => {
             }
           } catch (error) {
             setProductError(true);
+            console.error(error)
           } finally {
             setTimeout(() => setIsLoading(false), 1000)
           }
@@ -48,7 +49,6 @@ const ProductsGrid = () => {
     }
   }, []);
 
-  // Renderizações condicionais
   if (isLoading) return <div ref={gridRef} className="grid grid-cols-4 gap-8 mb-8"><LoadingProduct /></div>
   if (productError) return <h1 className="text-red-500 text-xl font-bold">Erro ao carregar produtos.</h1>;
 

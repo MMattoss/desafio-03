@@ -1,3 +1,4 @@
+import Carousel from "./components/Carousel";
 import ProductsGrid from "./components/ProductsGrid";
 
 const Home = () => {
@@ -88,7 +89,7 @@ const Home = () => {
 
 			<section
 				id="inspirations"
-				className="bg-color-primary-light flex items-center pl-24 py-11 overflow-x-hidden"
+				className="bg-[#FCF8F3] flex items-center pl-24 py-11 overflow-x-hidden"
 			>
 				<article className="mr-10">
 					<h1 className="text-[40px] text-dark-grey-2 font-bold leading-10 mb-2">
@@ -102,7 +103,8 @@ const Home = () => {
 						Explore More
 					</button>
 				</article>
-				<div className="relative">
+
+				{/* <div className="relative">
 					<img
 						src="https://furniro-images.s3.us-east-2.amazonaws.com/homeImages/inspiration-banner.png"
 						alt="Bedroom decoration"
@@ -131,7 +133,9 @@ const Home = () => {
 							</svg>
 						</button>
 					</div>
-				</div>
+				</div> */}
+
+        <Carousel />
 			</section>
 		</>
 	);
