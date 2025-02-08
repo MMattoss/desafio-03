@@ -1,18 +1,3 @@
-.carouselItem {
-  min-width: 372px;
-  height: 486px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  transition: height 0.7s ease-in-out;
-}
-
-.active {
-  width: 404px;
-  height: 582px;
-  transition: height 0.7s ease-in-out;
-}
-
 .track {
   animation: slideIn 0.5s;
 }

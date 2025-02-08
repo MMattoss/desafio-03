@@ -9,49 +9,65 @@ const initialImages = [
 	"https://furniro-images.s3.us-east-2.amazonaws.com/carouselImages/carousel-img-4.jpg",
 ];
 
-
 const Carousel = () => {
 	const [images, setImages] = useState(initialImages);
 	const [isTransitioning, setIsTransitioning] = useState(false);
+	const [activeIndex, setActiveIndex] = useState(0);
 
-  const handleNextSlide = () => {
-    if (isTransitioning) return;
-    
-    setIsTransitioning(true);
-    setTimeout(() => {
-			setIsTransitioning(false)
+	const handleNextSlide = () => {
+		if (isTransitioning) return;
+
+		setIsTransitioning(true);
+		setTimeout(() => {
+			setIsTransitioning(false);
 			setImages((prevImages) => {
-        const newImages = [...prevImages.slice(1), prevImages[0]];
-        return newImages;
-      });
-    }, 500);
+				const newImages = [...prevImages.slice(1), prevImages[0]];
+				return newImages;
+			});
+			setActiveIndex((prevIndex) => (prevIndex + 1) % initialImages.length);
+		}, 500);
+	};
 
-  };
+	return (
+		<div className="relative flex-1 self-stretch overflow-hidden">
+			{/* Controller */}
+			<button
+				onClick={handleNextSlide}
+				className="bg-white w-12 h-12 rounded-full drop-shadow-2xl flex items-center justify-center absolute z-10 top-1/2 left-[776px] translate-y-[-50%]"
+			>
+				<img src={arrow} alt="arrow left" />
+			</button>
 
-  return (
-    <div className="relative flex-1 self-stretch overflow-hidden">
-      {/* Track */}
-      <div
-        className={`flex gap-6 ${
-          isTransitioning ? animation.track : ""
-        }`}
-      >
-        <div className="relative flex gap-6">
-          {/* Controller */}
-          <button
-            onClick={handleNextSlide}
-            className="bg-white w-12 h-12 rounded-full shadow-xl flex items-center justify-center absolute z-10 top-1/2 left-[351px] translate-y-[-150%]"
-          >
-            <img src={arrow} alt="arrow left" />
-          </button>
+			{/* Track */}
+			<div
+				className={`flex gap-6 relative transition-[transform] ${
+					isTransitioning ? animation.track : ""
+				}`}
+			>
+				<div className="flex gap-6">
+					{images.map((item, index) => (
+						<CarouselItem
+							src={item}
+							key={index}
+							isActive={index === 0}
+						/>
+					))}
+				</div>
+			</div>
 
-          {images.map((item, index) => (
-            <CarouselItem src={item} key={index} isActive={index === 0} />
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+			{/* Indicator */}
+			<div className="flex justify-between items-center absolute left-[428px] bottom-[29px] gap-5">
+				{images.map((_, index) => (
+					<div
+						key={index}
+						className={`w-7 h-7 rounded-full p-2 ${index === activeIndex ? "border border-color-primary" : ""}`} 
+					>
+						<div className={`w-full h-full rounded-full ${index === activeIndex ? "bg-color-primary" : "bg-slate-200"}`}></div>
+					</div>
+				))}
+			</div>
+		</div>
+	);
 };
 
 type CarouselItemProp = {
@@ -62,8 +78,12 @@ type CarouselItemProp = {
 const CarouselItem = ({ src, isActive }: CarouselItemProp) => {
 	return (
 		<div
-		className={`${animation.carouselItem} ${isActive ? animation.active : ""}`}
-		style={{ backgroundImage: `url(${src})` }}
+			className={`w-[372px] h-[486px] bg-no-repeat bg-cover bg-center transition-[height] duration-500 ${
+				isActive
+					? "w-[404px] h-[582px] transition-[height] duration-500"
+					: ""
+			}`}
+			style={{ backgroundImage: `url(${src})` }}
 		>
 			<div className="absolute bottom-6 left-6 flex items-end">
 				<article className="bg-white bg-opacity-75 pt-16 pl-8 pb-8 pr-4">
