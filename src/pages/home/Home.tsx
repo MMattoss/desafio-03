@@ -123,7 +123,7 @@ const Home = () => {
 			>
 				<header className="text-center">
 					<h2 className="text-xl text-semi-dark-grey-3 font-semibold">Share your setup with</h2>
-					<h1 className="text-[40px] text-dark-grey-2 font-bold">#FuniroFurniture</h1>
+					<h1 className="text-[40px] text-dark-grey-2 font-bold">#FurniroFurniture</h1>
 				</header>
 				<img
 					src="https://furniro-images.s3.us-east-2.amazonaws.com/homeImages/mosaic.png"
