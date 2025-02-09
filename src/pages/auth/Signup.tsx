@@ -1,16 +1,30 @@
-import Banner from "../../components/Banner";
-import googleIcon from "../../assets/google-icon.svg"
-import facebookLoginIcon from "../../assets/facebook-login-icon.svg"
 import { Link } from "react-router";
+import Banner from "../../components/Banner";
+import googleIcon from "../../assets/google-icon.svg";
+import facebookLoginIcon from "../../assets/facebook-login-icon.svg"
 
-const Login = () => {
-	return (
-		<>
-			<Banner route={"login"} />
+const SignUpPage = () => {
+  return (
+    <>
+      <Banner route={"Sign Up"} />
 			<div className="flex items-center justify-center bg-white py-28">
 				<div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
 					<form className="card-body">
-            <h1 className="text-center text-2xl font-medium text-black">Login with</h1>
+            <h1 className="text-center text-2xl font-medium text-black">Sign up with</h1>
+            {/* Name */}
+						<div className="form-control">
+							<label className="label">
+								<span className="label-text text-base font-medium">
+									Name
+								</span>
+							</label>
+							<input
+								type="text"
+								placeholder="Name"
+								className="input input-bordered"
+							/>
+						</div>
+            {/* Email */}
 						<div className="form-control">
 							<label className="label">
 								<span className="label-text text-base font-medium">
@@ -23,6 +37,7 @@ const Login = () => {
 								className="input input-bordered"
 							/>
 						</div>
+            {/* Password */}
 						<div className="form-control">
 							<label className="label">
 								<span className="label-text text-base font-medium">
@@ -34,18 +49,23 @@ const Login = () => {
 								placeholder="Password"
 								className="input input-bordered"
 							/>
+						</div>
+            {/* Confirm password */}
+						<div className="form-control">
 							<label className="label">
-								<a
-									href="#"
-									className="label-text-alt link link-hover"
-								>
-									Forgot password?
-								</a>
+								<span className="label-text text-base font-medium">
+									Confirm password
+								</span>
 							</label>
+							<input
+								type="password"
+								placeholder="Confirm password"
+								className="input input-bordered"
+							/>
 						</div>
 						<div className="form-control mt-6">
 							<button className="btn bg-color-primary text-white">
-								Login
+								Sign up
 							</button>
 						</div>
 						<div className="divider">Or</div>
@@ -57,14 +77,14 @@ const Login = () => {
                 <img src={facebookLoginIcon} alt="Facebook" className="w-6 h-6"/>
               </button>
 						</div>
-            <div className="text-center ">
-              Don't have an account? <Link className="link" to={'/signup'}>Login</Link>
+            <div className="text-center">
+                Already have an account? <Link className="link" to={'/login'}>Login</Link>
             </div>
 					</form>
 				</div>
 			</div>
-		</>
-	);
-};
+    </>
+  )
+}
 
-export default Login;
+export default SignUpPage;

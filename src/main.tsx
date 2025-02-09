@@ -6,6 +6,7 @@ import Home from './pages/home/Home.tsx'
 import App from './App.tsx'
 import './index.css'
 import Login from './pages/auth/Login.tsx'
+import SignUpPage from './pages/auth/Signup.tsx'
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
@@ -21,6 +22,7 @@ createRoot(document.getElementById('root')!).render(
           <Route element={<App />}>
             <Route path='/' element={<Home />} />
             <Route path='login' element={<Login />}/>
+            <Route path='signup' element={<SignUpPage />}/>
           </Route>
         </Routes>
       </ClerkProvider>

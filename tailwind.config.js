@@ -21,7 +21,17 @@ export default {
   },
   plugins: [require('daisyui')],
   daisyui: {
-    themes: ['light']
+      themes: [
+    {
+      light: {
+        ...require("daisyui/src/theming/themes")["light"],
+        ".menu li > *:not(ul):not(.menu-title):not(details).active": {
+          backgroundColor: "#B88E2F",
+          color: "#FFFFFF",
+        },
+      },
+    }
+  ],
   }
 }
 

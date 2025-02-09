@@ -78,7 +78,7 @@ const Footer = () => {
         </form>
       </div>
     </div>
-    <p className="text-black text-base font-normal">2023 furino. All rights reverved</p>
+    <p className="text-black text-base font-normal self-start">2023 furino. All rights reverved</p>
   </footer>
 }
 
