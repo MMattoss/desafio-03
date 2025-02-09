@@ -1,3 +1,4 @@
+import { imgBucketBaseUrl } from "../../utils/baseUrls";
 import Carousel from "./components/Carousel";
 import ProductsGrid from "./components/ProductsGrid";
 
@@ -6,10 +7,8 @@ const Home = () => {
 		<>
 			<section
 				id="hero"
-				style={{
-					backgroundImage: `url(https://furniro-images.s3.us-east-2.amazonaws.com/homeImages/hero-bg.png)`,
-				}}
-				className="bg-no-repeat bg-cover bg-center h-[712px] flex items-center justify-end pr-[18px]"
+				style={{backgroundImage: `url(${imgBucketBaseUrl}/homeImages/hero-bg.png)`}}
+				className={`bg-no-repeat bg-cover bg-center h-[712px] flex items-center justify-end pr-[18px]`}
 			>
 				<div className="w-[643px] h-[443px] bg-color-primary-light pt-16 pl-10 pr-11 pb-9 rounded-lg">
 					<h3 className="text-base font-semibold text-dark-grey tracking-widest ">
@@ -46,7 +45,7 @@ const Home = () => {
 					<div className="flex gap-5">
 						<div>
 							<img
-								src="https://furniro-images.s3.us-east-2.amazonaws.com/homeImages/category-dining.png"
+								src={`${imgBucketBaseUrl}/homeImages/category-dining.png`}
 								alt="Dining table"
 								className="mb-[30px] rounded"
 							/>
@@ -56,7 +55,7 @@ const Home = () => {
 						</div>
 						<div>
 							<img
-								src="https://furniro-images.s3.us-east-2.amazonaws.com/homeImages/category-living-room.png"
+								src={`${imgBucketBaseUrl}/homeImages/category-living-room.png`}
 								alt="Living room"
 								className="mb-[30px] rounded"
 							/>
@@ -66,7 +65,7 @@ const Home = () => {
 						</div>
 						<div>
 							<img
-								src="https://furniro-images.s3.us-east-2.amazonaws.com/homeImages/category-bathroom.png"
+								src={`${imgBucketBaseUrl}/homeImages/category-bathroom.png`}
 								alt="Bathroom"
 								className="mb-[30px] rounded"
 							/>
@@ -126,7 +125,7 @@ const Home = () => {
 					<h1 className="text-[40px] text-dark-grey-2 font-bold">#FurniroFurniture</h1>
 				</header>
 				<img
-					src="https://furniro-images.s3.us-east-2.amazonaws.com/homeImages/mosaic.png"
+					src={`${imgBucketBaseUrl}/homeImages/mosaic.png`}
 					alt=""
 					className="min-w-[1800px] absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]"
 				/>

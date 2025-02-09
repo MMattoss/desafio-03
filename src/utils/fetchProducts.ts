@@ -1,3 +1,5 @@
+import { dbApiBaseUrl } from "./baseUrls";
+
 interface Product {
   title: string;
   description: string;
@@ -15,7 +17,7 @@ interface FetchProductsReturn {
 
 export const fetchProducts = async (): Promise<FetchProductsReturn> => {
   try {
-    const response = await fetch('http://3.145.17.162:5173/products');
+    const response = await fetch(`${dbApiBaseUrl}/products`);
 
     if (!response.ok) {
       return {
