@@ -1,8 +1,16 @@
+import { useCallback, useEffect } from "react";
 import { imgBucketBaseUrl } from "../../utils/baseUrls";
 import Carousel from "./components/Carousel";
 import ProductsGrid from "./components/ProductsGrid";
+import { useClerk } from "@clerk/clerk-react";
 
 const Home = () => {
+	const {signOut} = useClerk();
+	useEffect(() => {
+    signOut({
+      redirectUrl: '/',
+    });
+  }, [signOut]);
 	return (
 		<>
 			<section

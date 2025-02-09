@@ -2,8 +2,11 @@ import loginIcon from "../assets/login-icon.svg";
 import cartIcon from "../assets/cart-icon.svg";
 import { NavLink } from "react-router";
 import { imgBucketBaseUrl } from "../utils/baseUrls";
+import { SignedIn, SignedOut, useClerk } from "@clerk/clerk-react";
 
 const Navbar = () => {
+	const { signOut } = useClerk();
+
 	return (
 		<header className="flex justify-between items-center py-[30px] pl-14 pr-24">
 			<div className="flex items-center">
@@ -63,16 +66,26 @@ const Navbar = () => {
 						tabIndex={0}
 						className="dropdown-content bg-white menu rounded-box z-[1] w-28 p-2 drop-shadow-lg"
 					>
-						<li className="bg-white hover:bg-slate-200">
-              <NavLink to={"/login"}>
-                <a>Login</a>
-              </NavLink>
-						</li>
-						<li className="bg-white hover:bg-slate-200">
-              <NavLink to={"/signup"}>
-                <a>Sign up</a>
-              </NavLink>
-						</li>
+						<SignedIn>
+							<li className="bg-white hover:bg-slate-200">
+								<NavLink to={"/"} onClick={() => signOut({redirectUrl: '/'})}>
+									Sign Out
+								</NavLink>
+							</li>
+						</SignedIn>
+
+						<SignedOut>
+							<li className="bg-white hover:bg-slate-200">
+								<NavLink to={"/login"}>
+									Login
+								</NavLink>
+							</li>
+							<li className="bg-white hover:bg-slate-200">
+								<NavLink to={"/signup"}>
+									Sign up
+								</NavLink>
+							</li>
+						</SignedOut>
 					</ul>
 				</div>
 				<img src={cartIcon} alt="Cart" />

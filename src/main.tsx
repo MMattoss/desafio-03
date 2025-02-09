@@ -15,17 +15,17 @@ if (!PUBLISHABLE_KEY) {
 }
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <BrowserRouter>
-      <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl={'/'}>
-        <Routes>
-          <Route element={<App />}>
-            <Route path='/' element={<Home />} />
-            <Route path='login' element={<Login />}/>
-            <Route path='signup' element={<SignUpPage />}/>
-          </Route>
-        </Routes>
-      </ClerkProvider>
-    </BrowserRouter>
-  </StrictMode>,
+  <BrowserRouter>
+    <StrictMode>
+        <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl={'/'}>
+          <Routes>
+            <Route element={<App />}>
+              <Route path='/' element={<Home />} />
+              <Route path='login' element={<Login />}/>
+              <Route path='signup' element={<SignUpPage />}/>
+            </Route>
+          </Routes>
+        </ClerkProvider>
+    </StrictMode>,
+  </BrowserRouter>
 )
