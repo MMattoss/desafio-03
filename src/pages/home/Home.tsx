@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { imgBucketBaseUrl } from "../../utils/baseUrls";
 import Carousel from "./components/Carousel";
 import ProductsGrid from "./components/ProductsGrid";

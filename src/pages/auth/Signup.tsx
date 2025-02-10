@@ -25,7 +25,7 @@ const SignUpPage = () => {
 		console.log(formData)
 	};
 
-	const handleCodeChange = (e: React.FormEvent) => {
+	const handleCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setVerificationCode(e.target.value)
 	}
 
@@ -60,11 +60,11 @@ const SignUpPage = () => {
 		const completeSignUp = await signUp.attemptEmailAddressVerification({code});
 		console.log(completeSignUp)
 
-		if(completeSignUp !== "complete") {
+		if(completeSignUp.status !== "complete") {
 			return "Verification error."
 		}
 
-		await setActive({session: completeSignUp.createSessionId});
+		await setActive({session: completeSignUp.createdSessionId});
 		console.log("success")
 		setTimeout(() => {
 			navigate('/');
