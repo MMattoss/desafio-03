@@ -1,61 +1,57 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Banner from "../../components/Banner";
-import googleIcon from "../../assets/google-icon.svg"
-import facebookLoginIcon from "../../assets/facebook-login-icon.svg"
-import { Link, useNavigate } from "react-router";
-import { useState } from "react";
+import googleIcon from "../../assets/google-icon.svg";
+import facebookLoginIcon from "../../assets/facebook-login-icon.svg";
+import { Link } from "react-router";
 import { useSignIn } from "@clerk/clerk-react";
+import { FieldValues, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signInSchema } from "../../utils/formValidations/signInSchema";
 
 const Login = () => {
-	const navigate = useNavigate();
 	const { signIn, isLoaded, setActive } = useSignIn();
-	const [formData, setFormData] = useState({
-		email: '',
-		password: ''
+	const {
+		register,
+		reset,
+		handleSubmit,
+		setError,
+		formState: { isSubmitting, errors },
+	} = useForm({
+		resolver: zodResolver(signInSchema)
 	});
 
-	const handleInputChange = (e: { target: { name: string; value: string; }; }) => {
-		const { name, value } = e.target;
-		setFormData(prevData => ({
-			...prevData,
-			[name]: value
-		}))
-	}
-
-	const handleSubmit = async(e: React.FormEvent) => {
-		e.preventDefault();
-		
-		if(!isLoaded) return;
+	const onSubmit = async (data: FieldValues) => {
+		if (!isLoaded) return;
 
 		try {
-			const completeSignIn = await signIn.create({
-				identifier: formData.email,
-				password: formData.password
-			})
+			const attemptSignIn = await signIn.create({
+				identifier: data.email,
+				password: data.password,
+			});
 
-			if(completeSignIn.status !== "complete") {
-				console.error(JSON.stringify(completeSignIn, null, 2));
-				return;
-			}
-
-			await setActive({ session: completeSignIn.createdSessionId });
-			setTimeout(() => {
-				console.log("success")
-				navigate('/')
-			}, 1000)
-
+			reset();
+			await setActive({ session: attemptSignIn.createdSessionId, redirectUrl: "/success"});
 		} catch (err: any) {
 			console.error("error", err.errors[0].message);
+			setError("password", {
+				type: "manual",
+				message: "Incorrect password",
+			});
 		}
-	}
+	};
 
 	return (
 		<>
 			<Banner route={"login"} />
 			<div className="flex items-center justify-center bg-white py-28">
 				<div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-					<form className="card-body" onSubmit={handleSubmit}>
-            <h1 className="text-center text-2xl font-medium text-black">Login with</h1>
+					<form
+						className="card-body"
+						onSubmit={handleSubmit(onSubmit)}
+					>
+						<h1 className="text-center text-2xl font-medium text-black">
+							Login with
+						</h1>
 						<div className="form-control">
 							<label className="label">
 								<span className="label-text text-base font-medium">
@@ -63,13 +59,17 @@ const Login = () => {
 								</span>
 							</label>
 							<input
+								{...register("email")}
 								name="email"
 								type="email"
 								placeholder="Email"
 								className="input input-bordered"
-								onChange={handleInputChange}
 							/>
+							{errors.email && <label className="label">
+								<p className="label-text-alt text-red-600">{errors.email.message?.toString()}</p>
+							</label> }
 						</div>
+
 						<div className="form-control">
 							<label className="label">
 								<span className="label-text text-base font-medium">
@@ -77,12 +77,15 @@ const Login = () => {
 								</span>
 							</label>
 							<input
+								{...register("password")}
 								name="password"
 								type="password"
 								placeholder="Password"
 								className="input input-bordered"
-								onChange={handleInputChange}
 							/>
+							{errors.password && <label className="label">
+								<p className="label-text-alt text-red-600">{errors.password.message?.toString()}</p>
+							</label> }
 							<label className="label">
 								<a
 									href="#"
@@ -92,23 +95,39 @@ const Login = () => {
 								</a>
 							</label>
 						</div>
+
 						<div className="form-control mt-6">
 							<button className="btn bg-color-primary text-white">
-								Login
+								{isSubmitting ? (
+									<div className="loading loading-spinner text-white"></div>
+								) : (
+									"Login"
+								)}
 							</button>
 						</div>
 						<div className="divider">Or</div>
 						<div className="flex items-center justify-center gap-10 mb-4">
 							<button className="btn rounded-full border drop-shadow-lg flex items-center justify-center">
-                <img src={googleIcon} alt="Google" className="w-6 h-6" />
-              </button>
-              <button className="btn rounded-full border drop-shadow-lg flex items-center justify-center">
-                <img src={facebookLoginIcon} alt="Facebook" className="w-6 h-6"/>
-              </button>
+								<img
+									src={googleIcon}
+									alt="Google"
+									className="w-6 h-6"
+								/>
+							</button>
+							<button className="btn rounded-full border drop-shadow-lg flex items-center justify-center">
+								<img
+									src={facebookLoginIcon}
+									alt="Facebook"
+									className="w-6 h-6"
+								/>
+							</button>
 						</div>
-            <div className="text-center ">
-              Don't have an account? <Link className="link" to={'/signup'}>Sign up.</Link>
-            </div>
+						<div className="text-center ">
+							Don't have an account?{" "}
+							<Link className="link" to={"/signup"}>
+								Sign up.
+							</Link>
+						</div>
 					</form>
 				</div>
 			</div>
