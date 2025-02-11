@@ -1,21 +1,24 @@
 import { useEffect } from "react";
 import { imgBucketBaseUrl } from "../../utils/baseUrls";
 import Carousel from "./components/Carousel";
-import ProductsGrid from "./components/ProductsGrid";
+import ProductsGrid from "../../components/ProductsGrid";
 import { useClerk } from "@clerk/clerk-react";
 
 const Home = () => {
-	const {signOut} = useClerk();
+	const { signOut } = useClerk();
 	useEffect(() => {
-    signOut({
-      redirectUrl: '/',
-    });
-  }, [signOut]);
+		signOut({
+			redirectUrl: "/",
+		});
+	}, [signOut]);
+	
 	return (
 		<>
 			<section
 				id="hero"
-				style={{backgroundImage: `url(${imgBucketBaseUrl}/homeImages/hero-bg.png)`}}
+				style={{
+					backgroundImage: `url(${imgBucketBaseUrl}/homeImages/hero-bg.png)`,
+				}}
 				className={`bg-no-repeat bg-cover bg-center h-[712px] flex items-center justify-end pr-[18px]`}
 			>
 				<div className="w-[643px] h-[443px] bg-color-primary-light pt-16 pl-10 pr-11 pb-9 rounded-lg">
@@ -129,8 +132,12 @@ const Home = () => {
 				className="overflow-hidden relative w-screen h-[900px] mt-16"
 			>
 				<header className="text-center">
-					<h2 className="text-xl text-semi-dark-grey-3 font-semibold">Share your setup with</h2>
-					<h1 className="text-[40px] text-dark-grey-2 font-bold">#FurniroFurniture</h1>
+					<h2 className="text-xl text-semi-dark-grey-3 font-semibold">
+						Share your setup with
+					</h2>
+					<h1 className="text-[40px] text-dark-grey-2 font-bold">
+						#FurniroFurniture
+					</h1>
 				</header>
 				<img
 					src={`${imgBucketBaseUrl}/homeImages/mosaic.png`}
