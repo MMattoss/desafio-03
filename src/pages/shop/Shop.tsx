@@ -58,7 +58,9 @@ const Shop = () => {
 				<div className="flex items-center justify-center gap-6">
 					<div className="flex items-center gap-3">
 						<span className="text-xl">Show</span>
-						<input type="number" value={16} onChange={setCurrPage} className="w-14 h-14 flex items-center justify-center bg-white text-xl text-gray-400 flex items-center justify-center"/>
+						<div className="px-4 py-3 bg-white text-xl text-gray-400 flex items-center justify-center">
+							16
+						</div>
 					</div>
 
 					<div className="flex items-center gap-3">
