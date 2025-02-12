@@ -2,11 +2,11 @@ import Banner from "../../components/Banner";
 import filterIcon from "../../assets/filter-icon.svg";
 import gridIcon from "../../assets/grid-filter-icon.svg";
 import listIcon from "../../assets/list-filter-icon.svg";
-import ProductsGrid from "../../components/ProductsGrid";
 import { useEffect, useState } from "react";
 import { fetchProducts, Product } from "../../utils/fetchProducts";
 import ProductCard from "../../components/ProductCard";
 import Pagination from "./components/Pagination";
+import BenefitsBanner from "../../components/BenefitsBanner";
 
 const Shop = () => {
 	const [products, setProducts] = useState<Product[] | null>([]);
@@ -51,7 +51,9 @@ const Shop = () => {
 
 					<div className="divider divider-horizontal m-0"></div>
 
-					<p className="text-base">Showing 1 - 16 of {products?.length} results</p>
+					<p className="text-base">
+						Showing 1 - 16 of {products?.length} results
+					</p>
 				</div>
 
 				{/* Right */}
@@ -78,10 +80,15 @@ const Shop = () => {
 						<ProductCard {...product} key={index} />
 					))}
 				</div>
-				<Pagination totalProducts={products?.length} productsPerPage={productsPerPage} setCurrPage={setCurrPage} currPage={currPage}/>
+				<Pagination
+					totalProducts={products?.length}
+					productsPerPage={productsPerPage}
+					setCurrPage={setCurrPage}
+					currPage={currPage}
+				/>
 			</section>
 
-			<div></div>
+			<BenefitsBanner />
 		</>
 	);
 };
