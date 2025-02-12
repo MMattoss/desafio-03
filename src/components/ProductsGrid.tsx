@@ -18,14 +18,14 @@ const ProductsGrid = () => {
 	const [productsList, setProductsList] = useState<Product[] | null>(null);
 	const [productError, setProductError] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
-	const gridRef = useRef<HTMLDivElement | null>(null);
+	const gridRef = useRef<Element>();
 
 	useEffect(() => {
 		if (gridRef.current) {
 			const observer = new IntersectionObserver(
 				async (entries) => {
 					if (entries[0].isIntersecting) {
-						observer.unobserve(gridRef.current);
+						observer.unobserve(gridRef.current!);
 
 						setIsLoading(true);
 						try {
