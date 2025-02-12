@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addToCartReducer, clearCartReducer, removeFromCartReducer } from "./cartReducers";
+import { addToCartReducer, clearCartReducer, decreaseQuantityReducer, removeFromCartReducer } from "./cartReducers";
 
 export interface CartItem {
   id: string;
@@ -25,9 +25,10 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: addToCartReducer,
     removeFromCart: removeFromCartReducer,
+    decreaseQuantity: decreaseQuantityReducer,
     clearCart: clearCartReducer
   }
 })
 
-export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, clearCart, decreaseQuantity } = cartSlice.actions;
 export default cartSlice.reducer;

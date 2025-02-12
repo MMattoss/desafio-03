@@ -7,8 +7,6 @@ import { fetchProducts, Product } from "../../utils/fetchProducts";
 import ProductCard from "../../components/ProductCard";
 import Pagination from "./components/Pagination";
 import BenefitsBanner from "../../components/BenefitsBanner";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart, clearCart } from "../../store/cart/cartSlice"
 
 const Shop = () => {
 	const [products, setProducts] = useState<Product[] | null>([]);

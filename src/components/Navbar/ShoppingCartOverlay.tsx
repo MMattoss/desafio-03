@@ -1,14 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-	addToCart,
-	removeFromCart,
-	clearCart,
-} from "../../store/cart/cartSlice";
+import { removeFromCart } from "../../store/cart/cartSlice";
 import closeCartIcon from "../../assets/close-cart-icon.svg";
 import xIcon from "../../assets/x-icon.svg";
 import { AppState } from "../../store/store";
+import { NavLink } from "react-router";
 
-const ShoppingCartOverlay = ({ setIsCartOpen }) => {
+type ShoppingCartOverlayProps = {
+  setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const ShoppingCartOverlay: React.FC<ShoppingCartOverlayProps> = ({ setIsCartOpen }) => {
 	const dispatch = useDispatch();
 	const cartItems = useSelector((state: AppState) => state.cart.cartItems);
 
@@ -33,7 +34,10 @@ const ShoppingCartOverlay = ({ setIsCartOpen }) => {
 
 				<ul className="flex flex-col gap-5 overflow-y-scroll mb-auto px-8">
 					{cartItems.map((item, index) => (
-						<div className="flex items-center justify-between pr-5" key={index}>
+						<div
+							className="flex items-center justify-between pr-5"
+							key={index}
+						>
 							<img
 								src={item.thumbnailUrl}
 								alt="Product"
@@ -65,8 +69,8 @@ const ShoppingCartOverlay = ({ setIsCartOpen }) => {
 						</div>
 					))}
 				</ul>
-				
-				{cartItems.length > 0 && 
+
+				{cartItems.length > 0 && (
 					<div className="flex gap-[100px] justify-self-end px-8 pt-3">
 						<h3 className="text-black text-base font-normal">
 							Subtotal
@@ -77,14 +81,29 @@ const ShoppingCartOverlay = ({ setIsCartOpen }) => {
 								.toLocaleString()}
 						</h3>
 					</div>
-				}
+				)}
 
 				<div className="divider"></div>
 
 				<div className="flex items-center justify-center gap-3 pb-6 px-8">
-					<button className="border border-black rounded-full px-8 py-2 text-xs text-black font-normal">Cart</button>
-					<button className="border border-black rounded-full px-8 py-2 text-xs text-black font-normal">Checkout</button>
-					<button className="border border-black rounded-full px-8 py-2 text-xs text-black font-normal">Comparison</button>
+					<NavLink
+						to={"/cart"}
+						className="border border-black rounded-full px-8 py-2 text-xs text-black font-normal"
+					>
+						Cart
+					</NavLink>
+					<NavLink
+						to={"/checkout"}
+						className="border border-black rounded-full px-8 py-2 text-xs text-black font-normal"
+					>
+						Checkout
+					</NavLink>
+					<NavLink
+						to={"#"}
+						className="border border-black rounded-full px-8 py-2 text-xs text-black font-normal"
+					>
+						Comparison
+					</NavLink>
 				</div>
 			</div>
 		</div>

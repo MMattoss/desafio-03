@@ -10,7 +10,7 @@ import { AppState } from "../../store/store";
 
 const Navbar = () => {
 	const { signOut } = useClerk();
-	const [isCartOpen, setIsCartOpen] = useState(true);
+	const [isCartOpen, setIsCartOpen] = useState(false);
 	const cartItems = useSelector((state: AppState) => state.cart.cartItems);
 	const totalCartItems = cartItems.reduce(
 		(sum, item) => sum + item.quantity,

@@ -17,6 +17,20 @@ export const addToCartReducer = (
 	}
 };
 
+export const decreaseQuantityReducer = (
+  state: CartState,
+  action: PayloadAction<string>
+) => {
+  const item = state.cartItems.find((i) => i.id === action.payload);
+  if (item) {
+    if (item.quantity > 1) {
+      item.quantity -= 1;
+    } else {
+      state.cartItems = state.cartItems.filter((i) => i.id !== action.payload);
+    }
+  }
+};
+
 export const removeFromCartReducer = (
 	state: CartState,
 	action: PayloadAction<string>
