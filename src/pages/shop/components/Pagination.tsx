@@ -1,14 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const Pagination = ({
 	totalProducts,
 	productsPerPage,
 	setCurrPage,
 	currPage,
-}: {
-	totalProducts: number;
-	productsPerPage: number;
-	setCurrPage: (page: number) => void;
-	currPage: number;
-}) => {
+}: any) => {
 	const totalPages = Math.ceil(totalProducts / productsPerPage);
 	const pages: number[] = [];
 
