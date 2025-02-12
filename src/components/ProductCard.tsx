@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router";
-import { addToCart, removeFromCart, clearCart } from "../store/cart/cartSlice"
+import { addToCart } from "../store/cart/cartSlice"
 
 interface ProductCardProps {
 	title: string;

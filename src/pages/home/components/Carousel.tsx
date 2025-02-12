@@ -1,13 +1,13 @@
 import { useState } from "react";
 import arrow from "../../../assets/Right 24px.svg";
 import animation from "./carousel.module.css";
+import { imgBucketBaseUrl } from "../../../utils/baseUrls";
 
 const initialImages = [
-	`https://furniro-images.s3.us-east-2.amazonaws.com/carouselImages/carousel-img-1.png`,
-	"https://furniro-images.s3.us-east-2.amazonaws.com/carouselImages/carousel-img-2.png",
-	"https://furniro-images.s3.us-east-2.amazonaws.com/carouselImages/carousel-img-3.png",
-	"https://furniro-images.s3.us-east-2.amazonaws.com/carouselImages/carousel-img-4.jpg",
-];
+	`${imgBucketBaseUrl}/carouselImages/carousel-img-1.png`,
+`${imgBucketBaseUrl}/carouselImages/carousel-img-2.png`,
+`${imgBucketBaseUrl}/carouselImages/carousel-img-3.png`,
+`${imgBucketBaseUrl}/carouselImages/carousel-img-4.jpg`,];
 
 const Carousel = () => {
 	const [images, setImages] = useState(initialImages);

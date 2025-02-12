@@ -8,6 +8,7 @@ export interface Product {
 	hasDiscount: boolean;
 	discount: number;
 	thumbnailUrl: string;
+	id: string
 }
 
 export interface FetchProductsReturn {

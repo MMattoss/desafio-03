@@ -59,7 +59,7 @@ const Shop = () => {
 					<div className="flex items-center gap-3">
 						<span className="text-xl">Show</span>
 						<div className="px-4 py-3 w- bg-white text-xl text-gray-400 flex items-center justify-center">
-							<input type="number" />
+							<input type="number" placeholder="16" onChange={(e) => setProductsPerPage(Number(e.target.value))}/>
 						</div>
 					</div>
 
@@ -74,8 +74,8 @@ const Shop = () => {
 
 			<section className="px-24 mt-16 mb-20" id="productsList">
 				<div className="grid grid-cols-4 gap-8 mb-8">
-					{currentProducts?.map((product, index) => (
-						<ProductCard {...product} key={index} onClick/>
+					{currentProducts?.map((product) => (
+						<ProductCard {...product} key={product.id}/>
 					))}
 				</div>
 				<Pagination
