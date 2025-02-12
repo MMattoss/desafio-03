@@ -4,6 +4,7 @@ import { NavLink } from "react-router";
 import { imgBucketBaseUrl } from "../../utils/baseUrls";
 import { SignedIn, SignedOut, useClerk } from "@clerk/clerk-react";
 import { useRef, useState } from "react";
+import ShoppingCartOverlay from "./ShoppingCartOverlay";
 
 const Navbar = () => {
 	const { signOut } = useClerk();
@@ -11,7 +12,7 @@ const Navbar = () => {
 	const navRef = useRef(null);
 
 	return (
-		<header ref={navRef} className="flex justify-between items-center py-[30px] pl-14 pr-24">
+		<header ref={navRef} className="flex justify-between items-center py-[30px] pl-14 pr-24 relative">
 			<div className="flex items-center">
 				<img
 					src={`${imgBucketBaseUrl}/homeImages/logo.png`}
@@ -92,8 +93,9 @@ const Navbar = () => {
 						</SignedOut>
 					</ul>
 				</div>
-				<img src={cartIcon} alt="Cart" />
+				<img src={cartIcon} alt="Cart" onClick={() => setIsCartOpen(true)}/>
 			</div>
+			<ShoppingCartOverlay />
 		</header>
 	);
 };
