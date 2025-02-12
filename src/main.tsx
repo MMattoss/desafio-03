@@ -2,6 +2,8 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router";
 import { ClerkProvider } from "@clerk/clerk-react";
+import { Provider } from 'react-redux';
+import { store } from "./store/store.ts";
 import Home from "./pages/home/Home.tsx";
 import App from "./App.tsx";
 import "./index.css";
@@ -19,6 +21,8 @@ if (!PUBLISHABLE_KEY) {
 createRoot(document.getElementById("root")!).render(
 	<BrowserRouter>
 		<StrictMode>
+			<Provider store={store}>
+
 			<ClerkProvider
 				publishableKey={PUBLISHABLE_KEY}
 				afterSignOutUrl={"/"}
@@ -33,6 +37,8 @@ createRoot(document.getElementById("root")!).render(
 					</Route>
 				</Routes>
 			</ClerkProvider>
+			</Provider>
+
 		</StrictMode>
 		,
 	</BrowserRouter>

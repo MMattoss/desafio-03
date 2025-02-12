@@ -3,16 +3,22 @@ import cartIcon from "../../assets/cart-icon.svg";
 import { NavLink } from "react-router";
 import { imgBucketBaseUrl } from "../../utils/baseUrls";
 import { SignedIn, SignedOut, useClerk } from "@clerk/clerk-react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import ShoppingCartOverlay from "./ShoppingCartOverlay";
+import { useSelector } from "react-redux";
+import { AppState } from "../../store/store";
 
 const Navbar = () => {
 	const { signOut } = useClerk();
 	const [isCartOpen, setIsCartOpen] = useState(true);
-	const navRef = useRef(null);
+	const cartItems = useSelector((state: AppState) => state.cart.cartItems);
+	const totalCartItems = cartItems.reduce(
+		(sum, item) => sum + item.quantity,
+		0
+	);
 
 	return (
-		<header ref={navRef} className="flex justify-between items-center py-[30px] pl-14 pr-24 relative">
+		<header className="flex justify-between items-center py-[30px] pl-14 pr-24 relative">
 			<div className="flex items-center">
 				<img
 					src={`${imgBucketBaseUrl}/homeImages/logo.png`}
@@ -93,9 +99,25 @@ const Navbar = () => {
 						</SignedOut>
 					</ul>
 				</div>
-				<img src={cartIcon} alt="Cart" onClick={() => setIsCartOpen(true)}/>
+				<div className="flex relative">
+					{totalCartItems > 0 ? (
+						<div className="absolute bottom-2/3 left-1/2 w-4 h-4 bg-red-600 rounded-full text-white text-sm font-medium flex items-center justify-center">
+							{totalCartItems}
+						</div>
+					) : (
+						""
+					)}
+					<img
+						src={cartIcon}
+						alt="Cart"
+						onMouseEnter={() => setIsCartOpen(true)}
+					/>
+				</div>
 			</div>
-			<ShoppingCartOverlay />
+
+			{isCartOpen && (
+				<ShoppingCartOverlay setIsCartOpen={setIsCartOpen} />
+			)}
 		</header>
 	);
 };

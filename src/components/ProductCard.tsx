@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router";
+import { addToCart, removeFromCart, clearCart } from "../store/cart/cartSlice"
 
 interface ProductCardProps {
 	title: string;
@@ -9,6 +11,7 @@ interface ProductCardProps {
 	hasDiscount: boolean;
 	discount: number;
 	thumbnailUrl: string;
+	id: string;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -19,10 +22,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
 	hasDiscount,
 	discount,
 	thumbnailUrl,
+	id
 }: ProductCardProps) => {
 	const calculatedPrice =
 		hasDiscount && !isNew ? price - price * (discount / 100) : price;
 	const [isHovered, setIsHovered] = useState(false);
+	const dispatcher = useDispatch();
 
 	return (
 		<div
@@ -79,7 +84,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 			{/* Hover */}
 			{isHovered ? (
 				<div className="absolute top-0 left-0 w-full h-full bg-dark-grey-2 bg-opacity-75 flex flex-col items-center justify-center">
-					<button className="bg-white w-52 h-12 text-color-primary text-base font-semibold mb-6">
+					<button onClick={() => dispatcher(addToCart({id, title, price, hasDiscount, discount, quantity: 1, thumbnailUrl }))} className="bg-white w-52 h-12 text-color-primary text-base font-semibold mb-6">
 						Add to cart
 					</button>
 					<nav className="w-full">
