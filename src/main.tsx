@@ -13,6 +13,7 @@ import Success from "./pages/Success.tsx";
 import Shop from "./pages/shop/Shop.tsx";
 import Cart from "./pages/Cart.tsx";
 import Contact from "./pages/Contact.tsx";
+import Checkout from "./pages/Checkout.tsx";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -37,6 +38,7 @@ createRoot(document.getElementById("root")!).render(
 						<Route path="shop" element={<Shop />} />
 						<Route path="cart" element={<Cart />} />
 						<Route path="contact" element={<Contact />} />
+						<Route path="checkout" element={<Checkout />} />
 						<Route path="success" element={<Success />} />
 					</Route>
 				</Routes>

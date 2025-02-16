@@ -11,7 +11,7 @@ import BenefitsBanner from "../../components/BenefitsBanner";
 const Shop = () => {
 	const [products, setProducts] = useState<Product[] | null>([]);
 	const [currPage, setCurrPage] = useState(1);
-	const [productsPerPage, setProductsPerPage] = useState(16);
+	const productsPerPage = 16;
 	const lastProductIndex = currPage * productsPerPage;
 	const firstProductIndex = lastProductIndex - productsPerPage;
 
@@ -59,7 +59,7 @@ const Shop = () => {
 					<div className="flex items-center gap-3">
 						<span className="text-xl">Show</span>
 						<div className="px-4 py-3 w- bg-white text-xl text-gray-400 flex items-center justify-center">
-							<input type="number" placeholder="16" onChange={(e) => setProductsPerPage(Number(e.target.value))}/>
+							16
 						</div>
 					</div>
 
@@ -78,8 +78,9 @@ const Shop = () => {
 						<ProductCard {...product} key={product.id}/>
 					))}
 				</div>
+				
 				<Pagination
-					totalProducts={products?.length}
+					totalProducts={products!.length}
 					productsPerPage={productsPerPage}
 					setCurrPage={setCurrPage}
 					currPage={currPage}

@@ -1,10 +1,16 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+interface PaginationProps {
+	totalProducts: number,
+	productsPerPage: number,
+	setCurrPage: React.Dispatch<React.SetStateAction<number>>,
+	currPage: number
+}
+
 const Pagination = ({
 	totalProducts,
 	productsPerPage,
 	setCurrPage,
 	currPage,
-}: any) => {
+}: PaginationProps) => {
 	const totalPages = Math.ceil(totalProducts / productsPerPage);
 	const pages: number[] = [];
 
