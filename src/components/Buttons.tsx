@@ -19,8 +19,8 @@ export const OauthButton = ({ provider }: OauthButtonProp) => {
 			setLoading(true);
 			await signUp.authenticateWithRedirect({
 				strategy: providerCode,
-				redirectUrl: "/success",
-				redirectUrlComplete: "/success",
+				redirectUrl: "/checkout",
+				redirectUrlComplete: "/checkout",
 			});
 			setLoading(false);
 		} catch (err) {

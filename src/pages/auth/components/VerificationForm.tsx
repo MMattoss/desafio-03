@@ -19,7 +19,7 @@ const VerificationForm = ({ signUp, isLoaded, setActive }: any) => {
 				}
 			);
 
-			await setActive({ session: completeSignUp.createdSessionId, redirectUrl: "/success" });
+			await setActive({ session: completeSignUp.createdSessionId, redirectUrl: "/checkout" });
 
 		} catch (err) {
 			console.error("error: ", err);

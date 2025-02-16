@@ -7,8 +7,18 @@ import { useSelector } from "react-redux";
 import { AppState } from "../store/store";
 import { useEffect, useState } from "react";
 import { getAddressInfo } from "../utils/getAddressInfo";
+import { useUser } from "@clerk/clerk-react";
 
 const Checkout = () => {
+	const { user } = useUser();
+	const userData = user
+		? {
+				firstName: user.firstName,
+				lastName: user.lastName,
+				email: user.emailAddresses[0].emailAddress,
+		  }
+		: null;
+
 	const {
 		register,
 		formState: { errors },
@@ -21,7 +31,7 @@ const Checkout = () => {
 		regiao: "",
 		cidade: "",
 		estado: "",
-		logradouro: ""
+		logradouro: "",
 	});
 
 	const cartItems = useSelector((state: AppState) => state.cart.cartItems);
@@ -38,8 +48,8 @@ const Checkout = () => {
 					regiao: res.regiao,
 					cidade: res.localidade,
 					estado: res.estado,
-					logradouro: res.logradouro
-				})
+					logradouro: res.logradouro,
+				});
 				return res;
 			};
 			console.log(addressInfo());
@@ -69,6 +79,7 @@ const Checkout = () => {
 									name="firstName"
 									type="text"
 									className="input input-bordered"
+									value={userData ? userData.firstName! : ""}
 								/>
 								{errors.firstName && (
 									<label className="label">
@@ -89,6 +100,7 @@ const Checkout = () => {
 									name="lastName"
 									type="text"
 									className="input input-bordered"
+									value={userData ? userData.lastName! : ""}
 								/>
 								{errors.lastName && (
 									<label className="label">
@@ -270,6 +282,7 @@ const Checkout = () => {
 								name="email"
 								type="email"
 								className="input input-bordered"
+								value={userData ? userData.email! : ""}
 							/>
 							{errors.email && (
 								<label className="label">

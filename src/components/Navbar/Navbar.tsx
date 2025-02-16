@@ -91,10 +91,10 @@ const Navbar = () => {
 
 						<SignedOut>
 							<li className="bg-white hover:bg-slate-200">
-								<NavLink to={"/login"}>Login</NavLink>
+								<NavLink to={"/sign-in"}>Login</NavLink>
 							</li>
 							<li className="bg-white hover:bg-slate-200">
-								<NavLink to={"/signup"}>Sign up</NavLink>
+								<NavLink to={"/sign-up"}>Sign up</NavLink>
 							</li>
 						</SignedOut>
 					</ul>

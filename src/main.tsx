@@ -7,13 +7,14 @@ import { store } from "./store/store.ts";
 import Home from "./pages/home/Home.tsx";
 import App from "./App.tsx";
 import "./index.css";
-import Login from "./pages/auth/Login.tsx";
 import SignUpPage from "./pages/auth/Signup.tsx";
+import SignInPage from "./pages/auth/SignIn.tsx";
 import Success from "./pages/Success.tsx";
 import Shop from "./pages/shop/Shop.tsx";
 import Cart from "./pages/Cart.tsx";
 import Contact from "./pages/Contact.tsx";
 import Checkout from "./pages/Checkout.tsx";
+import ProtectedRoute from "./pages/ProtectedRoutes.tsx";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -33,13 +34,17 @@ createRoot(document.getElementById("root")!).render(
 				<Routes>
 					<Route element={<App />}>
 						<Route path="/" element={<Home />} />
-						<Route path="login" element={<Login />} />
-						<Route path="signup" element={<SignUpPage />} />
+						<Route path="sign-in" element={<SignInPage />} />
+						<Route path="sign-up" element={<SignUpPage />} />
 						<Route path="shop" element={<Shop />} />
 						<Route path="cart" element={<Cart />} />
 						<Route path="contact" element={<Contact />} />
-						<Route path="checkout" element={<Checkout />} />
 						<Route path="success" element={<Success />} />
+
+						{/* Protected routes */}
+						<Route element={<ProtectedRoute />} >
+							<Route path="checkout" element={<Checkout />}/>
+						</Route>
 					</Route>
 				</Routes>
 			</ClerkProvider>

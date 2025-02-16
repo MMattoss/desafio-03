@@ -25,7 +25,8 @@ const SignUpPage = () => {
 
 		try {
 			await signUp.create({
-				firstName: data.name,
+				firstName: data.firstName,
+				lastName: data.lastName,
 				emailAddress: data.email,
 				password: data.password,
 			});
@@ -58,20 +59,42 @@ const SignUpPage = () => {
 								<div className="form-control">
 									<label className="label">
 										<span className="label-text text-base font-medium">
-											Name
+											First Name
 										</span>
 									</label>
 									<input
-										{...register("name")}
-										name="name"
+										{...register("firstName")}
+										name="firstName"
 										type="text"
-										placeholder="Name"
+										placeholder="First Name"
 										className="input input-bordered"
 									/>
-									{errors.name && (
+									{errors.firstName && (
 										<label className="label">
 											<p className="label-text-alt text-red-600">
-												{errors.name.message?.toString()}
+												{errors.firstName.message?.toString()}
+											</p>
+										</label>
+									)}
+								</div>
+
+								<div className="form-control">
+									<label className="label">
+										<span className="label-text text-base font-medium">
+											Last Name
+										</span>
+									</label>
+									<input
+										{...register("lastName")}
+										name="lastName"
+										type="text"
+										placeholder="Last Name"
+										className="input input-bordered"
+									/>
+									{errors.lastName && (
+										<label className="label">
+											<p className="label-text-alt text-red-600">
+												{errors.lastName.message?.toString()}
 											</p>
 										</label>
 									)}

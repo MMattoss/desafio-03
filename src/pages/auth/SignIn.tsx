@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { signInSchema } from "../../utils/formValidations/signInSchema";
 import { OauthButton } from "../../components/Buttons";
 
-const Login = () => {
+const SignInPage = () => {
 	const { signIn, isLoaded, setActive } = useSignIn();
 	const {
 		register,
@@ -31,7 +31,7 @@ const Login = () => {
 			reset();
 			await setActive({
 				session: attemptSignIn.createdSessionId,
-				redirectUrl: "/success",
+				redirectUrl: "/checkout",
 			});
 		} catch (err: any) {
 			console.error("error", err.errors[0].message);
@@ -121,7 +121,7 @@ const Login = () => {
 						</div>
 						<div className="text-center ">
 							Don't have an account?{" "}
-							<Link className="link" to={"/signup"}>
+							<Link className="link" to={"/sign-up"}>
 								Sign up.
 							</Link>
 						</div>
@@ -132,4 +132,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default SignInPage;
